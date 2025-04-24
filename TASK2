@@ -1,0 +1,30 @@
+def reachable(adj_list, start_node):
+    """ Compute the nodes reachable from a start node
+
+    Parameters:
+    -----------
+    adj_list : the adjacency list of the graph
+    start_node: the index of the start node
+
+    Returns:
+    --------
+    reachable: set(int) the set of nodes reachable from start_node
+    """
+    def dfs(node, visited):
+        """ Helper function to perform DFS and collect reachable nodes """
+        visited.add(node)
+        for neighbor in adj_list[node]:
+            if neighbor not in visited:
+                dfs(neighbor, visited)
+
+    # Set to track the reachable nodes
+    visited = set()
+    
+    # Start DFS from the start_node
+    dfs(start_node, visited)
+    
+    return visited
+
+# Example usage:
+adj_list = [[1, 3], [2], [0], [4], [3], []]
+
